@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1736197242610" clover="3.2.0">
-  <project timestamp="1736197242610" name="All files">
+<coverage generated="1737051341210" clover="3.2.0">
+  <project timestamp="1737051341210" name="All files">
     <metrics statements="22" coveredstatements="20" conditionals="16" coveredconditionals="12" methods="4" coveredmethods="4" elements="42" coveredelements="36" complexity="0" loc="22" ncloc="22" packages="1" files="1" classes="1"/>
-    <file name="TrafficLight.ts" path="C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 Spring 2025\My Modules Workspace\Module 04 Readable Code\module04-traffic-light-activity\src\TrafficLight.ts">
+    <file name="TrafficLight.ts" path="C:\Users\dali7\Desktop\SWE OTHER\activity4\src\TrafficLight.ts">
       <metrics statements="22" coveredstatements="20" conditionals="16" coveredconditionals="12" methods="4" coveredmethods="4"/>
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="6" type="cond" truecount="3" falsecount="1"/>
