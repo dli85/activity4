@@ -1,17 +1,33 @@
-export type TrafficLightSymbol = Color | 'right turn';
-export type Color = 'red' | 'green' | 'yellow';
+// To add a new color: add it to either type, then add
+// appropriate values to dictionaries.
+
+export type TrafficLightSymbol = 'right arrow';
+export type Color = 'red' | 'green' | 'yellow' | TrafficLightSymbol;
+
+type NextColorDict = {
+  [key in Color]: Color;
+};
+
+type ColorToTimeDict = {
+  [key in Color]: number;
+};
+
+const nextColor: NextColorDict = {
+  'red': 'green',
+  'yellow': 'red',
+  'green': 'yellow',
+  'right arrow': 'green',
+};
+
+const timeMap: ColorToTimeDict = {
+  'red': 20,
+  'yellow': 5,
+  'green': 15,
+  'right arrow': 15,
+};
 
 export function getNextColor(color: Color): Color {
-  switch (color) {
-    case 'red':
-      return 'green';
-    case 'yellow':
-      return 'red';
-    case 'green':
-      return 'yellow';
-    default:
-      throw new Error('Unrecognized color.');
-  }
+  return nextColor[color];
 }
 
 export class TrafficLight {
@@ -19,29 +35,11 @@ export class TrafficLight {
 
   timeLeft = 20;
 
-  TIME_ON_RED = 20;
-
-  TIME_ON_YELLOW = 5;
-
-  TIME_ON_GREEN = 15;
-
   /* simulate one second passing */
   public tick() {
     if (this.timeLeft === 1) {
       this.color = getNextColor(this.color);
-      switch (this.color) {
-        case 'red':
-          this.timeLeft = this.TIME_ON_RED;
-          break;
-        case 'yellow':
-          this.timeLeft = this.TIME_ON_YELLOW;
-          break;
-        case 'green':
-          this.timeLeft = this.TIME_ON_GREEN;
-          break;
-        default:
-          throw new Error('Unrecognized colors.');
-      }
+      this.timeLeft = timeMap[this.color];
     } else {
       this.timeLeft -= 1;
     }
