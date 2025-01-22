@@ -4,30 +4,34 @@
 export type TrafficLightSymbol = 'right arrow';
 export type Color = 'red' | 'green' | 'yellow' | TrafficLightSymbol;
 
-type NextColorDict = {
-  [key in Color]: Color;
+type TrafficLightInfoDict = {
+  [key in Color]: {
+    nextColor: Color;
+    timeLeft: number;
+  };
 };
 
-type ColorToTimeDict = {
-  [key in Color]: number;
-};
-
-const nextColor: NextColorDict = {
-  'red': 'green',
-  'yellow': 'red',
-  'green': 'yellow',
-  'right arrow': 'green',
-};
-
-const timeMap: ColorToTimeDict = {
-  'red': 20,
-  'yellow': 5,
-  'green': 15,
-  'right arrow': 15,
+const trafficLightInfo: TrafficLightInfoDict = {
+  'red': {
+    nextColor: 'green',
+    timeLeft: 20,
+  },
+  'yellow': {
+    nextColor: 'red',
+    timeLeft: 5,
+  },
+  'green': {
+    nextColor: 'yellow',
+    timeLeft: 15,
+  },
+  'right arrow': {
+    nextColor: 'yellow',
+    timeLeft: 15,
+  },
 };
 
 export function getNextColor(color: Color): Color {
-  return nextColor[color];
+  return trafficLightInfo[color].nextColor;
 }
 
 export class TrafficLight {
@@ -39,7 +43,7 @@ export class TrafficLight {
   public tick() {
     if (this.timeLeft === 1) {
       this.color = getNextColor(this.color);
-      this.timeLeft = timeMap[this.color];
+      this.timeLeft = trafficLightInfo[this.color].timeLeft;
     } else {
       this.timeLeft -= 1;
     }

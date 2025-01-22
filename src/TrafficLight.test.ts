@@ -32,3 +32,13 @@ describe('tests for colors', () => {
   testcolor('green', 1, 'yellow');
   testcolor('yellow', 1, 'red');
 });
+
+describe('traffic symbol test', () => {
+  test('right arrow should change to yellow', () => {
+    const light = new TrafficLight();
+    light.setTime(1);
+    light.color = 'right arrow';
+    light.tick();
+    expect(light.getColor()).toEqual('yellow');
+  });
+});
